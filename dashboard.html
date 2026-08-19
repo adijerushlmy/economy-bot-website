@@ -142,12 +142,12 @@
       margin-bottom: 20px;
     }
 
-    .panel h2 {
-      margin-bottom: 20px;
-    }
-
     .panel-header h2 {
       margin-bottom: 0;
+    }
+
+    .panel h2 {
+      margin-bottom: 20px;
     }
 
     button {
@@ -297,11 +297,13 @@
   <main class="main">
 
     <div class="top">
+
       <h1>Dashboard</h1>
 
       <div class="server">
         🏠 השרת שלי
       </div>
+
     </div>
 
 
@@ -309,8 +311,6 @@
       בודק חיבור לבוט...
     </div>
 
-
-    <!-- סטטיסטיקות -->
 
     <div class="cards">
 
@@ -335,8 +335,6 @@
     </div>
 
 
-    <!-- ניהול החנות -->
-
     <section id="shop-management" class="panel">
 
       <div class="panel-header">
@@ -359,8 +357,6 @@
 
     </section>
 
-
-    <!-- מערכת כסף -->
 
     <section id="money" class="panel">
 
@@ -385,8 +381,6 @@
     </section>
 
 
-    <!-- הגדרות -->
-
     <section id="settings" class="panel">
 
       <h2>⚙️ הגדרות הבוט</h2>
@@ -410,8 +404,6 @@
     </section>
 
 
-    <!-- Leaderboard -->
-
     <section id="leaderboard" class="panel">
 
       <h2>🏆 Leaderboard</h2>
@@ -432,10 +424,8 @@
   <script>
 
     const API_URL =
-      "https://operate-procedures-scripts-modern.trycloudflare.com";
+      "https://bull-occupational-storage-juice.trycloudflare.com";
 
-
-    // בדיקת חיבור לבוט
 
     async function checkBot() {
 
@@ -507,8 +497,6 @@
 
     }
 
-
-    // טעינת החנות
 
     async function loadShop() {
 
@@ -590,8 +578,6 @@
     }
 
 
-    // מניעת הכנסת HTML לא רצוי
-
     function escapeHtml(value) {
 
       const div =
@@ -604,8 +590,6 @@
 
     }
 
-
-    // הפעלה ראשונית
 
     checkBot();
     loadShop();
