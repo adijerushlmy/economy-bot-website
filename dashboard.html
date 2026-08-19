@@ -53,6 +53,7 @@
       padding: 13px;
       border-radius: 7px;
       display: block;
+      transition: 0.2s;
     }
 
     .menu a:hover,
@@ -85,15 +86,11 @@
     }
 
     #connection {
+      padding: 15px;
+      border-radius: 8px;
+      background: #11141c;
+      border: 1px solid #292e3a;
       margin-bottom: 25px;
-      font-weight: bold;
-    }
-
-    .online {
-      color: #57d68a;
-    }
-
-    .offline {
       color: #ff5555;
     }
 
@@ -135,73 +132,8 @@
       margin-bottom: 25px;
     }
 
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .panel-header h2 {
-      margin-bottom: 0;
-    }
-
     .panel h2 {
       margin-bottom: 20px;
-    }
-
-    button {
-      border: none;
-      background: #5865f2;
-      color: white;
-      padding: 10px 17px;
-      border-radius: 7px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background: #4752c4;
-    }
-
-    .shop-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .shop-item {
-      background: #171a22;
-      border: 1px solid #292e3a;
-      border-radius: 8px;
-      padding: 18px;
-    }
-
-    .shop-item h3 {
-      margin-bottom: 8px;
-    }
-
-    .shop-item p {
-      color: #969cab;
-      margin-bottom: 12px;
-    }
-
-    .shop-price {
-      color: #57d68a;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .shop-id {
-      display: block;
-      color: #777d8c;
-      font-size: 12px;
-      margin-top: 8px;
-    }
-
-    .empty {
-      color: #969cab;
-      padding: 15px 0;
     }
 
     .setting {
@@ -227,6 +159,55 @@
       font-weight: bold;
     }
 
+    button {
+      border: none;
+      background: #5865f2;
+      color: white;
+      padding: 10px 17px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #4752c4;
+    }
+
+    .shop-item {
+      background: #171a22;
+      border: 1px solid #292e3a;
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+
+    .shop-item h3 {
+      margin-bottom: 8px;
+    }
+
+    .shop-item p {
+      color: #969cab;
+      margin-bottom: 10px;
+    }
+
+    .shop-item strong {
+      color: #57d68a;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .shop-item small {
+      color: #707684;
+    }
+
+    .empty {
+      color: #969cab;
+    }
+
+    .error {
+      color: #ff5555;
+    }
+
     @media (max-width: 800px) {
       .sidebar {
         position: relative;
@@ -238,11 +219,9 @@
 
       .main {
         margin-right: 0;
-        padding: 20px;
       }
 
-      .cards,
-      .shop-list {
+      .cards {
         grid-template-columns: 1fr;
       }
 
@@ -273,11 +252,11 @@
         📊 Dashboard
       </a>
 
-      <a href="#money">
+      <a href="#economy">
         💰 מערכת כסף
       </a>
 
-      <a href="#shop-management">
+      <a href="#shop">
         🛒 חנות
       </a>
 
@@ -307,58 +286,58 @@
     </div>
 
 
+    <!-- CONNECTION -->
+
     <div id="connection">
-      בודק חיבור לבוט...
+      🔄 בודק חיבור לבוט...
     </div>
 
+
+    <!-- STATISTICS -->
 
     <div class="cards">
 
       <div class="card">
         <div class="icon">👥</div>
         <h3>משתמשים</h3>
-        <div class="number">0</div>
+        <div class="number" id="users">0</div>
       </div>
 
       <div class="card">
         <div class="icon">💰</div>
         <h3>כסף במחזור</h3>
-        <div class="number">$0</div>
+        <div class="number" id="money">$0</div>
       </div>
 
       <div class="card">
         <div class="icon">🛒</div>
         <h3>פריטים בחנות</h3>
-        <div class="number" id="item-count">0</div>
+        <div class="number" id="shop-count">0</div>
       </div>
 
     </div>
 
 
-    <section id="shop-management" class="panel">
+    <!-- SHOP -->
 
-      <div class="panel-header">
+    <section id="shop" class="panel">
 
-        <h2>🛒 ניהול החנות</h2>
+      <h2>🛒 ניהול החנות</h2>
 
-        <button onclick="loadShop()">
-          🔄 רענן
-        </button>
-
+      <div style="margin-bottom:20px;">
+        <button onclick="loadShop()">🔄 רענן</button>
       </div>
 
-      <div id="shop-list" class="shop-list">
-
-        <p class="empty">
-          טוען את החנות...
-        </p>
-
+      <div id="shop-list">
+        <p class="empty">טוען את החנות...</p>
       </div>
 
     </section>
 
 
-    <section id="money" class="panel">
+    <!-- ECONOMY -->
+
+    <section id="economy" class="panel">
 
       <h2>💰 מערכת כסף</h2>
 
@@ -366,10 +345,7 @@
 
         <div>
           <strong>תגמול Voice</strong>
-
-          <p>
-            כסף שמקבלים על שהייה בשיחה קולית
-          </p>
+          <p>כסף שמקבלים על שהייה בשיחה קולית</p>
         </div>
 
         <div class="status">
@@ -381,6 +357,8 @@
     </section>
 
 
+    <!-- SETTINGS -->
+
     <section id="settings" class="panel">
 
       <h2>⚙️ הגדרות הבוט</h2>
@@ -389,31 +367,39 @@
 
         <div>
           <strong>סטטוס הבוט</strong>
-
-          <p>
-            מצב החיבור של Economy Bot
-          </p>
+          <p>מצב החיבור של Economy Bot</p>
         </div>
 
         <div id="bot-status" class="status">
-          בודק...
+          ● בודק...
         </div>
+
+      </div>
+
+      <div class="setting">
+
+        <div>
+          <strong>ניהול חנות</strong>
+          <p>ניהול מוצרים ומחירים</p>
+        </div>
+
+        <button onclick="document.getElementById('shop').scrollIntoView()">
+          ניהול
+        </button>
 
       </div>
 
     </section>
 
 
+    <!-- LEADERBOARD -->
+
     <section id="leaderboard" class="panel">
 
       <h2>🏆 Leaderboard</h2>
 
       <div class="setting">
-
-        <strong>
-          אין עדיין נתונים
-        </strong>
-
+        <strong>אין עדיין נתונים</strong>
       </div>
 
     </section>
@@ -423,22 +409,32 @@
 
   <script>
 
-    const API_URL =
-      "https://bull-occupational-storage-juice.trycloudflare.com";
+    /*
+      כתובת ה-API הנוכחית של Cloudflare
+    */
 
+    const API_URL =
+      "https://reader-characteristics-music-hat.trycloudflare.com";
+
+
+    /*
+      בדיקת חיבור לבוט
+    */
 
     async function checkBot() {
 
       const connection =
         document.getElementById("connection");
 
-      const status =
+      const botStatus =
         document.getElementById("bot-status");
 
       try {
 
         const response =
-          await fetch(`${API_URL}/api/status`);
+          await fetch(`${API_URL}/api/status`, {
+            cache: "no-store"
+          });
 
         if (!response.ok) {
           throw new Error("API error");
@@ -447,72 +443,76 @@
         const data =
           await response.json();
 
-        if (data.online) {
+        if (data.online === true) {
 
           connection.textContent =
             "● Economy Bot מחובר";
 
-          connection.className =
-            "online";
+          connection.style.color =
+            "#57d68a";
 
-          status.textContent =
+          botStatus.textContent =
             "● Online";
 
-          status.className =
-            "status online";
+          botStatus.style.color =
+            "#57d68a";
 
         } else {
 
           connection.textContent =
             "● Economy Bot לא מחובר";
 
-          connection.className =
-            "offline";
+          connection.style.color =
+            "#ff5555";
 
-          status.textContent =
+          botStatus.textContent =
             "● Offline";
 
-          status.className =
-            "offline";
-
+          botStatus.style.color =
+            "#ff5555";
         }
 
       } catch (error) {
 
+        console.error(error);
+
         connection.textContent =
           "● לא ניתן להתחבר לבוט";
 
-        connection.className =
-          "offline";
+        connection.style.color =
+          "#ff5555";
 
-        status.textContent =
+        botStatus.textContent =
           "● Offline";
 
-        status.className =
-          "offline";
-
-        console.error(error);
-
+        botStatus.style.color =
+          "#ff5555";
       }
 
     }
 
+
+    /*
+      טעינת החנות
+    */
 
     async function loadShop() {
 
       const shopList =
         document.getElementById("shop-list");
 
-      const itemCount =
-        document.getElementById("item-count");
+      const shopCount =
+        document.getElementById("shop-count");
 
       shopList.innerHTML =
-        '<p class="empty">טוען את החנות...</p>';
+        "<p class='empty'>🔄 טוען את החנות...</p>";
 
       try {
 
         const response =
-          await fetch(`${API_URL}/api/shop`);
+          await fetch(`${API_URL}/api/shop`, {
+            cache: "no-store"
+          });
 
         if (!response.ok) {
           throw new Error("API error");
@@ -521,25 +521,24 @@
         const data =
           await response.json();
 
-        const items =
-          data.items || [];
-
-        itemCount.textContent =
-          items.length;
-
-
-        if (items.length === 0) {
+        if (!data.items ||
+            data.items.length === 0) {
 
           shopList.innerHTML =
-            '<p class="empty">🛒 החנות ריקה כרגע.</p>';
+            "<p class='empty'>החנות ריקה כרגע.</p>";
+
+          shopCount.textContent = "0";
 
           return;
-
         }
 
 
+        shopCount.textContent =
+          data.items.length;
+
+
         shopList.innerHTML =
-          items.map(item => `
+          data.items.map(item => `
 
             <div class="shop-item">
 
@@ -553,11 +552,11 @@
                 )}
               </p>
 
-              <div class="shop-price">
+              <strong>
                 $${item.price}
-              </div>
+              </strong>
 
-              <small class="shop-id">
+              <small>
                 ID: ${item.id}
               </small>
 
@@ -568,31 +567,46 @@
 
       } catch (error) {
 
-        shopList.innerHTML =
-          '<p class="empty">❌ לא ניתן להתחבר ל־API.</p>';
-
         console.error(error);
 
+        shopList.innerHTML =
+          "<p class='error'>❌ לא ניתן להתחבר ל־API.</p>";
+
+        shopCount.textContent = "0";
       }
 
     }
 
 
+    /*
+      הגנה בסיסית להצגת טקסט מה-API
+    */
+
     function escapeHtml(value) {
 
-      const div =
-        document.createElement("div");
-
-      div.textContent =
-        value;
-
-      return div.innerHTML;
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
     }
 
 
+    /*
+      הפעלה ראשונית
+    */
+
     checkBot();
     loadShop();
+
+
+    /*
+      בדיקה מחדש כל 10 שניות
+    */
+
+    setInterval(checkBot, 10000);
 
   </script>
 
