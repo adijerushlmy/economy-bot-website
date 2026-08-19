@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard | Economy Bot</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0d12;
+      color: white;
+    }
+
+    .sidebar {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 250px;
+      height: 100vh;
+      background: #11141c;
+      border-left: 1px solid #282c38;
+      padding: 25px 18px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 35px;
+    }
+
+    .logo span {
+      color: #5865f2;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu a {
+      color: #aeb3c0;
+      text-decoration: none;
+      padding: 13px;
+      border-radius: 7px;
+      display: block;
+    }
+
+    .menu a:hover,
+    .menu .active {
+      background: #5865f2;
+      color: white;
+    }
+
+    .main {
+      margin-right: 250px;
+      padding: 35px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+
+    .top h1 {
+      font-size: 30px;
+    }
+
+    .server {
+      background: #171a22;
+      border: 1px solid #292e3a;
+      padding: 12px 18px;
+      border-radius: 8px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: #11141c;
+      border: 1px solid #292e3a;
+      border-radius: 10px;
+      padding: 25px;
+    }
+
+    .card .icon {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: #999fac;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .number {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .panel {
+      background: #11141c;
+      border: 1px solid #292e3a;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .panel h2 {
+      margin-bottom: 20px;
+    }
+
+    .setting {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 17px 0;
+      border-bottom: 1px solid #252934;
+    }
+
+    .setting:last-child {
+      border-bottom: none;
+    }
+
+    .setting p {
+      color: #969cab;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    .status {
+      color: #57d68a;
+      font-weight: bold;
+    }
+
+    button {
+      border: none;
+      background: #5865f2;
+      color: white;
+      padding: 10px 17px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #4752c4;
+    }
+
+    @media (max-width: 800px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-bottom: 1px solid #282c38;
+      }
+
+      .main {
+        margin-right: 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      Economy <span>Bot</span>
+    </div>
+
+    <div class="menu">
+
+      <a href="index.html">
+        🏠 דף הבית
+      </a>
+
+      <a href="#" class="active">
+        📊 Dashboard
+      </a>
+
+      <a href="#">
+        💰 מערכת כסף
+      </a>
+
+      <a href="#">
+        🛒 חנות
+      </a>
+
+      <a href="#">
+        🏆 Leaderboard
+      </a>
+
+      <a href="#">
+        ⚙️ הגדרות
+      </a>
+
+    </div>
+
+  </aside>
+
+
+  <main class="main">
+
+    <div class="top">
+
+      <h1>Dashboard</h1>
+
+      <div class="server">
+        🏠 השרת שלי
+      </div>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">👥</div>
+        <h3>משתמשים</h3>
+        <div class="number">0</div>
+      </div>
+
+      <div class="card">
+        <div class="icon">💰</div>
+        <h3>כסף במחזור</h3>
+        <div class="number">$0</div>
+      </div>
+
+      <div class="card">
+        <div class="icon">🛒</div>
+        <h3>פריטים בחנות</h3>
+        <div class="number">0</div>
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h2>⚙️ הגדרות הבוט</h2>
+
+      <div class="setting">
+
+        <div>
+          <strong>תגמול Voice</strong>
+          <p>כסף שמקבלים על שהייה בשיחה קולית</p>
+        </div>
+
+        <div class="status">
+          $10 / דקה
+        </div>
+
+      </div>
+
+
+      <div class="setting">
+
+        <div>
+          <strong>סטטוס הבוט</strong>
+          <p>מצב החיבור של Economy Bot</p>
+        </div>
+
+        <div class="status">
+          ● Online
+        </div>
+
+      </div>
+
+
+      <div class="setting">
+
+        <div>
+          <strong>ניהול חנות</strong>
+          <p>ניהול מוצרים ומחירים</p>
+        </div>
+
+        <button>
+          ניהול
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <h2>🏆 Leaderboard</h2>
+
+      <div class="setting">
+        <strong>אין עדיין נתונים</strong>
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
