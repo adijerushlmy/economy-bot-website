@@ -238,7 +238,10 @@
       </div>
 
     </div>
-
+    
+<div id="connection" style="margin-bottom:20px;color:#57d68a;">
+  בודק חיבור לבוט...
+</div>
 
     <div class="cards">
 
@@ -322,6 +325,28 @@
     </div>
 
   </main>
+  
+<script>
+async function checkBot() {
+  const connection = document.getElementById("connection");
 
+  try {
+    const response = await fetch("http://127.0.0.1:5000/api/status");
+    const data = await response.json();
+
+    if (data.online) {
+      connection.textContent = "● Economy Bot מחובר";
+    } else {
+      connection.textContent = "● Economy Bot לא מחובר";
+    }
+  } catch (error) {
+    connection.textContent = "● לא ניתן להתחבר לבוט";
+    connection.style.color = "#ff5555";
+  }
+}
+
+checkBot();
+</script>
+  
 </body>
 </html>
