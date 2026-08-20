@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="he" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Economy Bot | Dashboard</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -55,7 +57,7 @@ body {
 }
 
 .menu a:hover,
-.menu .active {
+.menu a.active {
     background: #5865f2;
     color: white;
 }
@@ -84,11 +86,11 @@ body {
 }
 
 .connection {
-    margin-bottom: 25px;
-    padding: 15px;
-    border-radius: 8px;
     background: #11141c;
     border: 1px solid #292e3a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
 }
 
 .cards {
@@ -172,12 +174,28 @@ button:hover {
     background: #4752c4;
 }
 
+button.delete {
+    background: #d33;
+}
+
+button.delete:hover {
+    background: #a22;
+}
+
+button.edit {
+    background: #444b60;
+}
+
+button.edit:hover {
+    background: #363c4d;
+}
+
 .shop-item {
     background: #171a22;
     border: 1px solid #292e3a;
     border-radius: 8px;
     padding: 18px;
-    margin-bottom: 12px;
+    margin-top: 12px;
 }
 
 .shop-item h3 {
@@ -192,16 +210,60 @@ button:hover {
 .shop-price {
     color: #57d68a;
     font-weight: bold;
+    margin-bottom: 12px;
 }
 
-.shop-id {
+.shop-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.form {
+    background: #171a22;
+    border: 1px solid #292e3a;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.form input,
+.form textarea {
+    width: 100%;
+    background: #0b0d12;
+    border: 1px solid #343947;
+    color: white;
+    padding: 12px;
+    border-radius: 7px;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form label {
     display: block;
-    color: #777d8c;
-    font-size: 12px;
-    margin-top: 5px;
+    margin-bottom: 6px;
+    color: #bfc3cf;
+}
+
+.message {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.success {
+    color: #57d68a;
+}
+
+.error {
+    color: #ff5555;
 }
 
 @media (max-width: 800px) {
+
     .sidebar {
         position: relative;
         width: 100%;
@@ -224,153 +286,442 @@ button:hover {
         gap: 15px;
     }
 }
+
 </style>
 
 </head>
 
 <body>
 
+
 <aside class="sidebar">
 
-```
-<div class="logo">
-    Economy <span>Bot</span>
-</div>
+    <div class="logo">
+        Economy <span>Bot</span>
+    </div>
 
-<div class="menu">
-    <a href="index.html">🏠 דף הבית</a>
-    <a href="dashboard.html" class="active">📊 Dashboard</a>
-    <a href="#">💰 מערכת כסף</a>
-    <a href="#">🛒 חנות</a>
-    <a href="#">🏆 Leaderboard</a>
-    <a href="#">⚙️ הגדרות</a>
-</div>
-```
+    <div class="menu">
+
+        <a href="index.html">
+            🏠 דף הבית
+        </a>
+
+        <a href="dashboard.html" class="active">
+            📊 Dashboard
+        </a>
+
+        <a href="#money">
+            💰 מערכת כסף
+        </a>
+
+        <a href="#shop">
+            🛒 חנות
+        </a>
+
+        <a href="#leaderboard">
+            🏆 Leaderboard
+        </a>
+
+        <a href="#settings">
+            ⚙️ הגדרות
+        </a>
+
+    </div>
 
 </aside>
 
+
 <main class="main">
 
-```
+
 <div class="top">
-    <h1>Dashboard</h1>
+
+    <h1>
+        Dashboard
+    </h1>
 
     <div class="server">
         🏠 השרת שלי
     </div>
+
 </div>
+
 
 <div id="connection" class="connection">
     🔄 בודק חיבור לבוט...
 </div>
 
+
+<!-- ========================= -->
+<!-- CARDS -->
+<!-- ========================= -->
+
 <div class="cards">
 
     <div class="card">
-        <div class="icon">👥</div>
-        <h3>משתמשים</h3>
-        <div class="number">0</div>
+
+        <div class="icon">
+            👥
+        </div>
+
+        <h3>
+            משתמשים
+        </h3>
+
+        <div class="number">
+            0
+        </div>
+
     </div>
 
-    <div class="card">
-        <div class="icon">💰</div>
-        <h3>כסף במחזור</h3>
-        <div class="number">$0</div>
-    </div>
 
     <div class="card">
-        <div class="icon">🛒</div>
-        <h3>פריטים בחנות</h3>
-        <div id="shop-count" class="number">0</div>
+
+        <div class="icon">
+            💰
+        </div>
+
+        <h3>
+            כסף במחזור
+        </h3>
+
+        <div class="number">
+            $0
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="icon">
+            🛒
+        </div>
+
+        <h3>
+            פריטים בחנות
+        </h3>
+
+        <div id="shop-count" class="number">
+            0
+        </div>
+
     </div>
 
 </div>
 
-<section class="panel">
 
-    <h2>🛒 ניהול החנות</h2>
+<!-- ========================= -->
+<!-- SHOP -->
+<!-- ========================= -->
 
-    <button onclick="loadShop()">🔄 רענן</button>
+<section class="panel" id="shop">
 
-    <div id="shop-list" style="margin-top:20px;">
+    <h2>
+        🛒 ניהול החנות
+    </h2>
+
+
+    <div class="form">
+
+        <h3 style="margin-bottom:15px;">
+            ➕ הוספת מוצר
+        </h3>
+
+
+        <label>
+            שם המוצר
+        </label>
+
+        <input
+            id="item-name"
+            type="text"
+            placeholder="לדוגמה: VIP"
+        >
+
+
+        <label>
+            מחיר
+        </label>
+
+        <input
+            id="item-price"
+            type="number"
+            min="0"
+            placeholder="1000"
+        >
+
+
+        <label>
+            תיאור
+        </label>
+
+        <textarea
+            id="item-description"
+            placeholder="תיאור המוצר..."
+        ></textarea>
+
+
+        <button onclick="addItem()">
+            ➕ הוסף לחנות
+        </button>
+
+
+        <div id="shop-message"
+             class="message">
+        </div>
+
+    </div>
+
+
+    <button onclick="loadShop()">
+        🔄 רענן חנות
+    </button>
+
+
+    <div id="shop-list"
+         style="margin-top:20px;">
+
         🔄 טוען את החנות...
+
     </div>
 
 </section>
 
-<section class="panel">
 
-    <h2>💰 מערכת כסף</h2>
+<!-- ========================= -->
+<!-- MONEY -->
+<!-- ========================= -->
+
+<section class="panel" id="money">
+
+    <h2>
+        💰 מערכת כסף
+    </h2>
+
+
+    <div class="form">
+
+        <h3 style="margin-bottom:15px;">
+            💵 תגמול Voice
+        </h3>
+
+
+        <label>
+            כמה כסף מקבלים בכל דקה?
+        </label>
+
+        <input
+            id="voice-reward"
+            type="number"
+            min="0"
+            value="10"
+        >
+
+
+        <button onclick="saveVoiceReward()">
+            💾 שמור
+        </button>
+
+
+        <div id="money-message"
+             class="message">
+        </div>
+
+    </div>
+
 
     <div class="setting">
 
         <div>
-            <strong>תגמול Voice</strong>
-            <p>כסף שמקבלים על שהייה בשיחה קולית</p>
+
+            <strong>
+                תגמול Voice
+            </strong>
+
+            <p>
+                כסף שמקבלים על שהייה בשיחה קולית
+            </p>
+
         </div>
 
-        <div class="status-online">
+
+        <div
+            id="voice-display"
+            class="status-online">
+
             $10 / דקה
+
         </div>
 
     </div>
 
 </section>
 
-<section class="panel">
 
-    <h2>⚙️ הגדרות הבוט</h2>
+<!-- ========================= -->
+<!-- SETTINGS -->
+<!-- ========================= -->
+
+<section class="panel" id="settings">
+
+    <h2>
+        ⚙️ הגדרות הבוט
+    </h2>
+
 
     <div class="setting">
 
         <div>
-            <strong>סטטוס הבוט</strong>
-            <p>מצב החיבור של Economy Bot</p>
+
+            <strong>
+                סטטוס הבוט
+            </strong>
+
+            <p>
+                מצב החיבור של Economy Bot
+            </p>
+
         </div>
 
-        <div id="bot-status" class="status-offline">
+
+        <div
+            id="bot-status"
+            class="status-offline">
+
             ● Offline
+
         </div>
 
     </div>
 
-</section>
-
-<section class="panel">
-
-    <h2>🏆 Leaderboard</h2>
 
     <div class="setting">
-        <strong>אין עדיין נתונים</strong>
+
+        <div>
+
+            <strong>
+                תגמול אוטומטי ב־Voice
+            </strong>
+
+            <p>
+                המערכת משתמשת בתגמול שהוגדר למעלה
+            </p>
+
+        </div>
+
+
+        <div
+            id="voice-setting-status"
+            class="status-online">
+
+            פעיל
+
+        </div>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div>
+
+            <strong>
+                API
+            </strong>
+
+            <p>
+                חיבור האתר למערכת הבוט
+            </p>
+
+        </div>
+
+
+        <div
+            id="api-status"
+            class="status-offline">
+
+            Offline
+
+        </div>
+
     </div>
 
 </section>
-```
+
+
+<!-- ========================= -->
+<!-- LEADERBOARD -->
+<!-- ========================= -->
+
+<section class="panel" id="leaderboard">
+
+    <h2>
+        🏆 Leaderboard
+    </h2>
+
+
+    <div class="setting">
+
+        <strong>
+            אין עדיין נתונים
+        </strong>
+
+    </div>
+
+</section>
+
 
 </main>
 
+
 <script>
+
+
+/*
+==================================================
+API
+==================================================
+*/
 
 const API_URL =
     "https://interests-detroit-habits-webmaster.trycloudflare.com";
 
 
+/*
+==================================================
+BOT STATUS
+==================================================
+*/
+
 async function checkBot() {
 
-    const connection = document.getElementById("connection");
-    const botStatus = document.getElementById("bot-status");
+    const connection =
+        document.getElementById("connection");
+
+    const botStatus =
+        document.getElementById("bot-status");
+
+    const apiStatus =
+        document.getElementById("api-status");
+
 
     try {
 
         const response =
-            await fetch(API_URL + "/api/status");
+            await fetch(
+                API_URL + "/api/status"
+            );
+
 
         if (!response.ok) {
             throw new Error("API error");
         }
 
+
         const data =
             await response.json();
+
 
         if (data.online === true) {
 
@@ -380,25 +731,20 @@ async function checkBot() {
             connection.style.color =
                 "#57d68a";
 
+
             botStatus.textContent =
                 "● Online";
 
             botStatus.className =
                 "status-online";
 
-        } else {
 
-            connection.textContent =
-                "● Economy Bot לא מחובר";
+            apiStatus.textContent =
+                "● Online";
 
-            connection.style.color =
-                "#ff5555";
+            apiStatus.className =
+                "status-online";
 
-            botStatus.textContent =
-                "● Offline";
-
-            botStatus.className =
-                "status-offline";
         }
 
     } catch (error) {
@@ -409,16 +755,33 @@ async function checkBot() {
         connection.style.color =
             "#ff5555";
 
+
         botStatus.textContent =
             "● Offline";
 
         botStatus.className =
             "status-offline";
 
+
+        apiStatus.textContent =
+            "● Offline";
+
+        apiStatus.className =
+            "status-offline";
+
+
         console.error(error);
+
     }
+
 }
 
+
+/*
+==================================================
+LOAD SHOP
+==================================================
+*/
 
 async function loadShop() {
 
@@ -428,23 +791,31 @@ async function loadShop() {
     const shopCount =
         document.getElementById("shop-count");
 
+
     try {
 
         const response =
-            await fetch(API_URL + "/api/shop");
+            await fetch(
+                API_URL + "/api/shop"
+            );
+
 
         if (!response.ok) {
             throw new Error("API error");
         }
 
+
         const data =
             await response.json();
+
 
         const items =
             data.items || [];
 
+
         shopCount.textContent =
             items.length;
+
 
         if (items.length === 0) {
 
@@ -452,14 +823,18 @@ async function loadShop() {
                 "<p>החנות ריקה כרגע.</p>";
 
             return;
+
         }
+
 
         shopList.innerHTML =
             items.map(item => `
 
                 <div class="shop-item">
 
-                    <h3>${escapeHtml(item.name)}</h3>
+                    <h3>
+                        ${escapeHtml(item.name)}
+                    </h3>
 
                     <p>
                         ${escapeHtml(
@@ -468,26 +843,465 @@ async function loadShop() {
                     </p>
 
                     <div class="shop-price">
+
                         💰 $${item.price}
+
                     </div>
 
-                    <span class="shop-id">
-                        ID: ${item.id}
-                    </span>
+
+                    <div class="shop-buttons">
+
+                        <button
+                            class="edit"
+                            onclick="editItem(
+                                ${item.id},
+                                '${escapeJs(item.name)}',
+                                ${item.price},
+                                '${escapeJs(item.description || "")}'
+                            )">
+
+                            ✏️ ערוך
+
+                        </button>
+
+
+                        <button
+                            class="delete"
+                            onclick="deleteItem(${item.id})">
+
+                            🗑️ מחק
+
+                        </button>
+
+                    </div>
 
                 </div>
 
             `).join("");
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         shopList.innerHTML =
-            "<p style='color:#ff5555'>❌ לא ניתן להתחבר ל־API.</p>";
+            "<p class='error'>❌ לא ניתן להתחבר ל־API.</p>";
 
         console.error(error);
+
     }
+
 }
 
+
+/*
+==================================================
+ADD ITEM
+==================================================
+*/
+
+async function addItem() {
+
+    const name =
+        document.getElementById("item-name").value.trim();
+
+    const price =
+        document.getElementById("item-price").value;
+
+    const description =
+        document.getElementById("item-description").value.trim();
+
+    const message =
+        document.getElementById("shop-message");
+
+
+    if (!name) {
+
+        message.textContent =
+            "❌ חובה להכניס שם";
+
+        message.className =
+            "message error";
+
+        return;
+
+    }
+
+
+    if (price === "") {
+
+        message.textContent =
+            "❌ חובה להכניס מחיר";
+
+        message.className =
+            "message error";
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/api/shop",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        name: name,
+                        price: Number(price),
+                        description: description
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+            throw new Error(
+                data.error || "שגיאה"
+            );
+        }
+
+
+        message.textContent =
+            "✅ המוצר נוסף לחנות";
+
+        message.className =
+            "message success";
+
+
+        document.getElementById("item-name").value =
+            "";
+
+        document.getElementById("item-price").value =
+            "";
+
+        document.getElementById("item-description").value =
+            "";
+
+
+        loadShop();
+
+    }
+
+    catch (error) {
+
+        message.textContent =
+            "❌ " + error.message;
+
+        message.className =
+            "message error";
+
+    }
+
+}
+
+
+/*
+==================================================
+DELETE ITEM
+==================================================
+*/
+
+async function deleteItem(id) {
+
+    if (!confirm("האם אתה בטוח שברצונך למחוק את המוצר?")) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/api/shop/" + id,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const data =
+                await response.json();
+
+            throw new Error(
+                data.error || "שגיאה"
+            );
+
+        }
+
+
+        loadShop();
+
+    }
+
+    catch (error) {
+
+        alert(
+            "❌ " + error.message
+        );
+
+    }
+
+}
+
+
+/*
+==================================================
+EDIT ITEM
+==================================================
+*/
+
+async function editItem(
+    id,
+    oldName,
+    oldPrice,
+    oldDescription
+) {
+
+    const name =
+        prompt(
+            "שם המוצר:",
+            oldName
+        );
+
+
+    if (name === null) {
+        return;
+    }
+
+
+    const price =
+        prompt(
+            "מחיר:",
+            oldPrice
+        );
+
+
+    if (price === null) {
+        return;
+    }
+
+
+    const description =
+        prompt(
+            "תיאור:",
+            oldDescription
+        );
+
+
+    if (description === null) {
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/api/shop/" + id,
+                {
+                    method: "PUT",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        name: name,
+
+                        price: Number(price),
+
+                        description: description
+
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error || "שגיאה"
+            );
+
+        }
+
+
+        loadShop();
+
+    }
+
+    catch (error) {
+
+        alert(
+            "❌ " + error.message
+        );
+
+    }
+
+}
+
+
+/*
+==================================================
+LOAD SETTINGS
+==================================================
+*/
+
+async function loadSettings() {
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/api/settings"
+            );
+
+
+        if (!response.ok) {
+            throw new Error("Settings error");
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const reward =
+            data.voice_reward || "10";
+
+
+        document.getElementById(
+            "voice-reward"
+        ).value = reward;
+
+
+        document.getElementById(
+            "voice-display"
+        ).textContent =
+            "$" + reward + " / דקה";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+
+/*
+==================================================
+SAVE VOICE REWARD
+==================================================
+*/
+
+async function saveVoiceReward() {
+
+    const reward =
+        document.getElementById(
+            "voice-reward"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "money-message"
+        );
+
+
+    if (reward === "" || Number(reward) < 0) {
+
+        message.textContent =
+            "❌ סכום לא תקין";
+
+        message.className =
+            "message error";
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/api/settings",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        voice_reward:
+                            Number(reward)
+                    })
+                }
+            );
+
+
+        if (!response.ok) {
+            throw new Error("שגיאה בשמירה");
+        }
+
+
+        document.getElementById(
+            "voice-display"
+        ).textContent =
+            "$" + reward + " / דקה";
+
+
+        message.textContent =
+            "✅ ההגדרה נשמרה";
+
+        message.className =
+            "message success";
+
+    }
+
+    catch (error) {
+
+        message.textContent =
+            "❌ לא ניתן לשמור";
+
+        message.className =
+            "message error";
+
+    }
+
+}
+
+
+/*
+==================================================
+SECURITY HELPERS
+==================================================
+*/
 
 function escapeHtml(text) {
 
@@ -498,13 +1312,45 @@ function escapeHtml(text) {
         text;
 
     return div.innerHTML;
+
 }
 
 
+function escapeJs(text) {
+
+    return String(text)
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/\n/g, "\\n")
+        .replace(/\r/g, "");
+
+}
+
+
+/*
+==================================================
+START
+==================================================
+*/
+
 checkBot();
+
 loadShop();
 
+loadSettings();
+
+
+/*
+בדיקה אוטומטית כל 10 שניות
+*/
+
+setInterval(
+    checkBot,
+    10000
+);
+
 </script>
+
 
 </body>
 </html>
